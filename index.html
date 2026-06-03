@@ -773,11 +773,34 @@
       border-bottom: 1px solid var(--line-soft);
     }
     .mobile-menu .btn { margin-top: var(--s-5); width: 100%; }
-    .mobile-menu .lang-switcher { margin-top: var(--s-4); justify-content: center; }
+    .mobile-menu .lang-switcher-mobile {
+      margin-top: var(--s-5);
+      justify-content: center;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .mobile-menu .lang-switcher-mobile .lang-btn {
+      padding: 8px 14px;
+      font-size: 0.82rem;
+    }
 
     @media (max-width: 900px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
+      .nav-inner { padding: 10px var(--s-4); gap: var(--s-3); }
+      .nav-logo { gap: 10px; }
+      .nav-logo strong { font-size: 1rem; white-space: nowrap; }
+      .nav-logo small { display: none; }    /* subtitle hidden on mobile to save space */
+      .nav-logo-mark { width: 34px; height: 34px; font-size: 0.95rem; border-radius: 8px; }
+      .nav-actions { gap: 6px; }
+      .lang-switcher { padding: 2px; }
+      .lang-btn { padding: 4px 7px; font-size: 0.7rem; }
+      .hamburger { width: 38px; height: 38px; }
+    }
+    @media (max-width: 420px) {
+      .lang-switcher { display: none; }       /* very small screens: hide lang from nav (still in mobile menu) */
+      .nav-logo strong { font-size: 0.95rem; }
     }
 
     /* =========================================================
@@ -810,6 +833,13 @@
     .hero-bg-fallback { z-index: 0; }
     .hero-bg-video {
       filter: saturate(1.05) contrast(1.02);
+    }
+    /* Mobile: shift focus to subject area (typically upper-center on portrait viewports) */
+    @media (max-width: 700px) {
+      .hero-bg-video,
+      .hero-bg-fallback {
+        object-position: 50% 35%;
+      }
     }
     .hero.video-playing .hero-bg-fallback {
       opacity: 0;
@@ -1012,12 +1042,12 @@
     }
     @media (max-width: 560px) {
       .hero {
-        padding-top: 100px;
+        padding-top: 92px;
         padding-bottom: var(--s-8);
-        min-height: 75vh;
+        min-height: 78vh;
       }
       .hero-eyebrow { font-size: 0.74rem; padding: 6px 12px; margin-bottom: var(--s-5); }
-      .hero-sub { font-size: 0.98rem; }
+      .hero-sub { font-size: 0.98rem; line-height: 1.5; }
       .hero-actions {
         flex-direction: column;
         align-items: stretch;
@@ -1025,11 +1055,12 @@
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: var(--s-5);
       }
-      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-actions .btn { width: 100%; justify-content: center; padding: 13px 18px; font-size: 0.95rem; }
       .hero-meta { font-size: 0.82rem; gap: var(--s-3); }
-      .hero::after { width: 22px; height: 36px; bottom: 16px; }
-      .hero::before { bottom: 38px; }
+      /* Scroll indicator hidden on mobile — was covering the meta text */
+      .hero::after, .hero::before { display: none; }
     }
 
     /* =========================================================
@@ -2563,6 +2594,12 @@
     <li><a href="#visit" data-en="Visit Us" data-vi="Đến gặp chúng tôi" data-ko="찾아오시는 길" data-ru="Как найти">Visit Us</a></li>
   </ul>
   <a href="#contact" class="btn btn-primary" data-en="Book Your Visit" data-vi="Đặt lịch hẹn" data-ko="예약하기" data-ru="Записаться">Book Your Visit</a>
+  <div class="lang-switcher lang-switcher-mobile" role="group" aria-label="Language">
+    <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+    <button class="lang-btn" data-lang="vi" aria-pressed="false">VI</button>
+    <button class="lang-btn" data-lang="ko" aria-pressed="false">KO</button>
+    <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+  </div>
 </div>
 
 <main id="main">
@@ -3914,8 +3951,8 @@
     mobileMenu.classList.toggle('open', !open);
     document.body.style.overflow = !open ? 'hidden' : '';
   });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
+  mobileMenu.querySelectorAll('a, .lang-btn').forEach(el => {
+    el.addEventListener('click', () => {
       hamburger.setAttribute('aria-expanded', 'false');
       mobileMenu.setAttribute('aria-hidden', 'true');
       mobileMenu.classList.remove('open');
