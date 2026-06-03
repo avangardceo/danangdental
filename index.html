@@ -2656,30 +2656,60 @@
       margin: 0;
       flex: 1;
     }
-    .intl-cta {
-      margin-top: var(--s-7);
-      padding: var(--s-5) var(--s-4);
+    /* =========================================================
+       CTA BANNER — strategic mid-page placement
+       ========================================================= */
+    .cta-banner {
+      padding: var(--s-6) 0 var(--s-10);
       background: var(--white);
+    }
+    .cta-banner-inner {
+      background: linear-gradient(135deg, rgba(0,119,182,0.04), rgba(72,202,228,0.06));
       border: 1px solid var(--line-soft);
-      border-radius: var(--radius);
-      width: fit-content;
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
+      border-radius: var(--radius-lg);
+      padding: var(--s-6) var(--s-6);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-5);
     }
-    .intl-cta-label {
-      font-size: 0.92rem;
-      font-weight: 500;
+    .cta-banner-text { min-width: 0; flex: 1 1 320px; }
+    .cta-banner-text h3 {
+      font-size: 1.35rem;
       color: var(--text);
-      margin: 0 0 var(--s-3);
-      max-width: none;
+      margin: 0 0 6px;
+      line-height: 1.25;
     }
-    .intl-cta-buttons {
+    .cta-banner-text p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin: 0;
+      max-width: 50ch;
+    }
+    .cta-banner-actions {
       display: flex;
       gap: var(--s-3);
-      justify-content: center;
       flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    @media (max-width: 780px) {
+      .cta-banner { padding: var(--s-4) 0 var(--s-8); }
+      .cta-banner-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: var(--s-5);
+        gap: var(--s-4);
+      }
+      .cta-banner-text p { margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 540px) {
+      .cta-banner-inner { padding: var(--s-4); }
+      .cta-banner-text h3 { font-size: 1.2rem; }
+      .cta-banner-text p { font-size: 0.9rem; }
+      .cta-banner-actions { flex-direction: column; width: 100%; max-width: 320px; }
+      .cta-banner-actions .btn { width: 100%; justify-content: center; }
     }
     @media (max-width: 980px) {
       .intl-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2687,14 +2717,6 @@
     @media (max-width: 540px) {
       .intl-grid { grid-template-columns: 1fr; gap: var(--s-3); }
       .intl-card { padding: var(--s-4); }
-      .intl-cta {
-        margin-top: var(--s-5);
-        padding: var(--s-4);
-        width: 100%;
-        max-width: 360px;
-      }
-      .intl-cta-buttons { flex-direction: column; }
-      .intl-cta-buttons .btn { width: 100%; justify-content: center; }
     }
 
     /* Prevent horizontal scroll on any viewport */
@@ -3595,26 +3617,6 @@
           </p>
         </div>
       </div>
-
-      <div class="intl-cta reveal" role="group" aria-labelledby="intl-cta-label">
-        <p id="intl-cta-label" class="intl-cta-label"
-           data-en="Ready to book your first visit?"
-           data-vi="Sẵn sàng đặt lịch lần đầu?"
-           data-ko="첫 진료를 예약하시겠어요?"
-           data-ru="Готовы записаться на первый приём?">Ready to book your first visit?</p>
-        <div class="intl-cta-buttons">
-          <a href="https://wa.me/84905151522?text=Hello%20Dr.%20Diep%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-success"
-             data-en="💬 Book on WhatsApp"
-             data-vi="💬 Đặt lịch qua WhatsApp"
-             data-ko="💬 왓츠앱으로 예약"
-             data-ru="💬 Записаться в WhatsApp">💬 Book on WhatsApp</a>
-          <a href="tel:+84905151522" class="btn btn-outline"
-             data-en="📞 Call +84 905 151 522"
-             data-vi="📞 Gọi +84 905 151 522"
-             data-ko="📞 +84 905 151 522 전화"
-             data-ru="📞 Звонок +84 905 151 522">📞 Call +84 905 151 522</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -3750,6 +3752,40 @@
            data-vi="Xem tất cả 54 đánh giá Google →"
            data-ko="구글 리뷰 54개 모두 보기 →"
            data-ru="Все 54 отзыва на Google →">Read all 54 Google reviews →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CTA BANNER — strategic placement after social proof
+       ========================================================= -->
+  <section class="cta-banner" aria-label="Book your appointment">
+    <div class="container">
+      <div class="cta-banner-inner reveal">
+        <div class="cta-banner-text">
+          <h3 data-en="Ready to book your first visit?"
+              data-vi="Sẵn sàng đặt lịch lần đầu?"
+              data-ko="첫 진료를 예약하시겠어요?"
+              data-ru="Готовы записаться на первый приём?">Ready to book your first visit?</h3>
+          <p data-en="First consultation is free. Reply within 24 hours, usually faster."
+             data-vi="Tư vấn lần đầu miễn phí. Trả lời trong vòng 24 giờ, thường nhanh hơn."
+             data-ko="첫 상담은 무료입니다. 24시간 이내 답변, 보통 더 빠릅니다."
+             data-ru="Первичная консультация бесплатна. Ответ в течение 24 часов, обычно быстрее.">
+            First consultation is free. Reply within 24 hours, usually faster.
+          </p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="https://wa.me/84905151522?text=Hello%20Dr.%20Diep%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-success"
+             data-en="💬 Book on WhatsApp"
+             data-vi="💬 Đặt lịch qua WhatsApp"
+             data-ko="💬 왓츠앱으로 예약"
+             data-ru="💬 Записаться в WhatsApp">💬 Book on WhatsApp</a>
+          <a href="tel:+84905151522" class="btn btn-outline"
+             data-en="📞 Call +84 905 151 522"
+             data-vi="📞 Gọi +84 905 151 522"
+             data-ko="📞 +84 905 151 522 전화"
+             data-ru="📞 Звонок +84 905 151 522">📞 Call +84 905 151 522</a>
+        </div>
       </div>
     </div>
   </section>
