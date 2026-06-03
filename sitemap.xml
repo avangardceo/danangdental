@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
   <url>
     <loc>https://danangdentist.com/</loc>
@@ -15,10 +16,25 @@
     <xhtml:link rel="alternate" hreflang="ru"        href="https://danangdentist.com/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://danangdentist.com/"/>
 
+    <video:video>
+      <video:thumbnail_loc>https://danangdentist.com/img/hero-poster.jpg</video:thumbnail_loc>
+      <video:title>Dr. Diep Dental Clinic — Da Nang</video:title>
+      <video:description>Cinematic loop showing dental work at Dr. Diep Dental Clinic, the English-speaking dentist in Da Nang, Vietnam.</video:description>
+      <video:content_loc>https://danangdentist.com/img/hero-loop.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-06-03T00:00:00+07:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+
     <image:image>
       <image:loc>https://danangdentist.com/img/team.jpg</image:loc>
       <image:title>The team at Dr. Diep Dental Clinic — Da Nang</image:title>
       <image:caption>Dental clinic team on Phan Anh Street, Da Nang</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://danangdentist.com/img/hero-poster.jpg</image:loc>
+      <image:title>Dr. Diep Dental Clinic — English-speaking dentist in Da Nang</image:title>
     </image:image>
     <image:image>
       <image:loc>https://danangdentist.com/img/result-1-after.jpg</image:loc>
