@@ -1,0 +1,14 @@
+# robots.txt for danangdentist.com
+# English-speaking dental clinic in Da Nang — Dr. Diep Dental Clinic
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://danangdentist.com/sitemap.xml
+
+# Don't crawl image search optimization
+User-agent: Googlebot-Image
+Allow: /img/
+
+# Disallow nothing — single-page site, all content is public

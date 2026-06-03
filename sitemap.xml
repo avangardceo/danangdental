@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://danangdentist.com/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+
+    <xhtml:link rel="alternate" hreflang="en"        href="https://danangdentist.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi"        href="https://danangdentist.com/?lang=vi"/>
+    <xhtml:link rel="alternate" hreflang="ko"        href="https://danangdentist.com/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://danangdentist.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danangdentist.com/"/>
+
+    <image:image>
+      <image:loc>https://danangdentist.com/img/team.jpg</image:loc>
+      <image:title>The team at Dr. Diep Dental Clinic — Da Nang</image:title>
+      <image:caption>Dental clinic team on Phan Anh Street, Da Nang</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://danangdentist.com/img/result-1-after.jpg</image:loc>
+      <image:title>Full smile restoration — real patient case</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://danangdentist.com/img/result-2-after.jpg</image:loc>
+      <image:title>Deep cleaning and whitening — real patient case</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://danangdentist.com/img/result-3-after.jpg</image:loc>
+      <image:title>Diastema closure — real patient case</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://danangdentist.com/img/result-4-after.jpg</image:loc>
+      <image:title>Cosmetic alignment — real patient case</image:title>
+    </image:image>
+  </url>
+
+</urlset>

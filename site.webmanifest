@@ -1,0 +1,42 @@
+{
+  "name": "Dr. Diep Dental Clinic — Danang Dentist",
+  "short_name": "Danang Dentist",
+  "description": "The dentist Da Nang's internationals rely on. Canada-trained, English-speaking, 10+ years on Phan Anh Street.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fbff",
+  "theme_color": "#0077b6",
+  "lang": "en",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book on WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Open WhatsApp chat with Dr. Diep",
+      "url": "https://wa.me/84905151522",
+      "icons": [{"src": "img/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Call Clinic",
+      "short_name": "Call",
+      "description": "Call +84 905 151 522",
+      "url": "tel:+84905151522"
+    }
+  ]
+}
