@@ -834,11 +834,17 @@
     .hero-bg-video {
       filter: saturate(1.05) contrast(1.02);
     }
-    /* Mobile: shift focus to subject area (typically upper-center on portrait viewports) */
+    /* Mobile: shift focus to subject (woman with mirror, left side of frame) */
     @media (max-width: 700px) {
       .hero-bg-video,
       .hero-bg-fallback {
-        object-position: 50% 35%;
+        object-position: 28% 45%;
+      }
+      /* Slightly lighter overlay on mobile so the subject reads better */
+      .hero-overlay {
+        background:
+          linear-gradient(180deg, rgba(0,30,50,0.22) 0%, rgba(0,46,80,0.48) 55%, rgba(0,30,50,0.72) 100%),
+          linear-gradient(90deg, rgba(0,30,50,0.30), rgba(0,30,50,0.10) 50%, rgba(0,30,50,0.30));
       }
     }
     .hero.video-playing .hero-bg-fallback {
