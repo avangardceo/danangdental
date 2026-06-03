@@ -61,10 +61,10 @@
   <meta property="og:image:width"  content="1080">
   <meta property="og:image:height" content="2048">
   <meta property="og:image:alt"    content="Dr. Diep Dental Clinic — English-speaking dentist in Da Nang, Vietnam">
-  <meta property="og:video"        content="https://danangdentist.com/img/hero-loop.mp4">
+  <meta property="og:video"        content="https://danangdentist.com/img/hero-bg.mp4">
   <meta property="og:video:type"   content="video/mp4">
-  <meta property="og:video:width"  content="1080">
-  <meta property="og:video:height" content="2048">
+  <meta property="og:video:width"  content="1920">
+  <meta property="og:video:height" content="1080">
   <meta property="og:locale"      content="en_US">
   <meta property="og:locale:alternate" content="vi_VN">
   <meta property="og:locale:alternate" content="ko_KR">
@@ -391,11 +391,13 @@
         "@type": "VideoObject",
         "@id": "https://danangdentist.com/#hero-video",
         "name": "Dr. Diep Dental Clinic — Da Nang",
-        "description": "Cinematic loop of dental work at Dr. Diep Dental Clinic, an English-speaking dentist in Da Nang, Vietnam.",
+        "description": "Cinematic background loop showing dental work at Dr. Diep Dental Clinic, an English-speaking dentist in Da Nang, Vietnam.",
         "thumbnailUrl": "https://danangdentist.com/img/hero-poster.jpg",
         "uploadDate": "2026-06-03",
-        "duration": "PT21S",
-        "contentUrl": "https://danangdentist.com/img/hero-loop.mp4",
+        "duration": "PT7S",
+        "width": 1920,
+        "height": 1080,
+        "contentUrl": "https://danangdentist.com/img/hero-bg.mp4",
         "embedUrl": "https://danangdentist.com/#main",
         "publisher": { "@id": "https://danangdentist.com/#organization" }
       },
@@ -779,43 +781,83 @@
     }
 
     /* =========================================================
-       HERO
+       HERO — full-bleed background video
        ========================================================= */
     .hero {
       position: relative;
-      padding: 130px 0 var(--s-12);
-      background:
-        radial-gradient(1100px 600px at 85% 10%, rgba(72,202,228,0.20), transparent 60%),
-        radial-gradient(900px 500px at 15% 60%, rgba(0,119,182,0.10), transparent 60%),
-        linear-gradient(180deg, var(--color-bg) 0%, var(--white) 100%);
-      overflow: hidden;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 1fr);
-      gap: var(--s-10);
+      padding: 150px 0 var(--s-10);
+      min-height: 88vh;
+      display: flex;
       align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: linear-gradient(135deg, #003e5e, #0077b6);
+    }
+    /* Background video: layer 0 */
+    .hero-bg-video,
+    .hero-bg-fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border: 0;
+      z-index: 0;
+    }
+    .hero-bg-video { z-index: 1; }
+    .hero-bg-fallback { z-index: 0; }
+    .hero-bg-video {
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .hero.video-playing .hero-bg-fallback {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    /* Dark gradient overlay for text legibility: layer 2 */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(180deg, rgba(0,30,50,0.30) 0%, rgba(0,46,80,0.55) 60%, rgba(0,30,50,0.78) 100%),
+        linear-gradient(90deg, rgba(0,30,50,0.55), rgba(0,30,50,0.20) 50%, rgba(0,30,50,0.45));
+      pointer-events: none;
+    }
+    /* Container/content sits above overlay */
+    .hero > .container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+    .hero-content {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: var(--s-2);
-      padding: 7px 14px;
-      background: white;
-      border: 1px solid var(--line);
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.95);
       border-radius: var(--radius-pill);
       font-size: 0.78rem;
       font-weight: 600;
       color: var(--color-primary-dk);
-      box-shadow: var(--shadow-sm);
-      margin-bottom: var(--s-5);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+      margin-bottom: var(--s-6);
       letter-spacing: 0.02em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .hero-eyebrow .dot {
-      width: 7px; height: 7px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       background: var(--color-success);
-      box-shadow: 0 0 0 4px rgba(45,158,92,0.18);
+      box-shadow: 0 0 0 4px rgba(45,158,92,0.25);
       animation: pulse 2s var(--ease) infinite;
     }
     @keyframes pulse {
@@ -826,16 +868,15 @@
       margin-bottom: var(--s-5);
       line-height: 1.08;
       letter-spacing: -0.02em;
-      /* Force single line on desktop/tablet; JS fit-text adjusts size */
       white-space: nowrap;
-      /* Animated gradient text using site palette */
+      /* Brighter palette for dark background: cyan → white → cyan loop */
       background: linear-gradient(
         100deg,
-        #003e5e 0%,
-        #0077b6 25%,
+        #ade8f4 0%,
+        #ffffff 30%,
         #48cae4 50%,
-        #0077b6 75%,
-        #003e5e 100%
+        #ffffff 70%,
+        #ade8f4 100%
       );
       background-size: 220% auto;
       -webkit-background-clip: text;
@@ -843,13 +884,12 @@
       -webkit-text-fill-color: transparent;
       color: transparent;
       animation: heroTitleShift 9s linear infinite;
-      /* Performance hints */
       will-change: background-position;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.25);
     }
     .hero h1 em {
       font-style: italic;
       font-weight: 500;
-      /* Inherit the gradient — em is inside the clipped fill */
       background: inherit;
       -webkit-background-clip: text;
       background-clip: text;
@@ -861,8 +901,8 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .hero h1 { animation: none; background-position: 30% center; }
+      .hero-bg-video { display: none; }
     }
-    /* On very small screens, allow wrapping (otherwise font becomes unreadable) */
     @media (max-width: 520px) {
       .hero h1 {
         white-space: normal;
@@ -871,112 +911,125 @@
       }
     }
     .hero-sub {
-      font-size: 1.12rem;
-      color: var(--text-soft);
-      margin-bottom: var(--s-6);
-      max-width: 55ch;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.92);
+      margin: 0 auto var(--s-6);
+      max-width: 62ch;
+      text-shadow: 0 1px 20px rgba(0,0,0,0.3);
+      line-height: 1.55;
     }
     .hero-actions {
-      display: flex; flex-wrap: wrap; gap: var(--s-3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-3);
       margin-bottom: var(--s-6);
+      justify-content: center;
+    }
+    /* Outline button variant for dark backgrounds */
+    .btn-outline-light {
+      background: rgba(255,255,255,0.10);
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,0.95);
+      color: var(--color-primary-dk);
+      border-color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
     .hero-meta {
-      display: flex; align-items: center; gap: var(--s-5);
+      display: flex;
+      align-items: center;
+      gap: var(--s-5);
       flex-wrap: wrap;
-      font-size: 0.88rem;
-      color: var(--text-soft);
+      justify-content: center;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.35);
     }
+    .hero-meta strong { color: white; }
     .hero-meta .stars {
-      display: inline-flex; gap: 1px;
-      color: #f7b500;
+      display: inline-flex;
+      gap: 1px;
+      color: #ffce3a;
       letter-spacing: 0;
       font-size: 1rem;
+      filter: drop-shadow(0 0 8px rgba(255,206,58,0.4));
+    }
+    .hero-meta-sep {
+      opacity: 0.5;
     }
 
-    .hero-photo {
-      position: relative;
-      width: 100%;
-      max-width: 440px;
-      height: 640px;
-      margin-left: auto;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      /* Multi-layer fallback: poster JPG → SVG pattern → blue gradient */
-      background:
-        url('img/hero-poster.jpg') center / cover no-repeat,
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g' cx='50%25' cy='30%25'><stop offset='0%25' stop-color='%2348cae4'/><stop offset='100%25' stop-color='%23003e5e'/></radialGradient></defs><rect width='200' height='200' fill='url(%23g)'/><path d='M100 60 C 80 60 70 80 70 110 C 70 135 75 165 90 165 C 96 165 99 155 100 140 C 101 155 104 165 110 165 C 125 165 130 135 130 110 C 130 80 120 60 100 60 Z' fill='white' opacity='0.18'/></svg>") center / cover no-repeat,
-        linear-gradient(135deg, var(--color-primary), var(--color-primary-darker));
-      flex-shrink: 0;
-    }
-    .hero-photo > .hero-video,
-    .hero-photo > .hero-video-fallback {
+    /* Subtle scroll indicator at bottom of hero */
+    .hero::after {
+      content: '';
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      display: block;
-      border: 0;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 42px;
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 16px;
+      z-index: 3;
+      pointer-events: none;
     }
-    .hero-photo > .hero-video      { z-index: 2; }
-    .hero-photo > .hero-video-fallback { z-index: 1; }
-    .hero-photo.video-playing .hero-video-fallback {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .hero-video {
-      filter: saturate(1.08) contrast(1.03);
-    }
-    .hero-photo-card {
+    .hero::before {
+      content: '';
       position: absolute;
-      bottom: var(--s-5);
-      left: var(--s-5);
-      right: var(--s-5);
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: var(--s-4) var(--s-5);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 8px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 2px;
+      z-index: 3;
+      pointer-events: none;
+      animation: scrollHint 2.2s ease-in-out infinite;
     }
-    .hero-photo-card strong {
-      display: block;
-      font-family: var(--font-display);
-      font-size: 1.08rem;
-      color: var(--text);
-      margin-bottom: 2px;
+    @keyframes scrollHint {
+      0%, 100% { transform: translate(-50%, 0); opacity: 1; }
+      50%      { transform: translate(-50%, 10px); opacity: 0.3; }
     }
-    .hero-photo-card span {
-      font-size: 0.82rem;
-      color: var(--text-soft);
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before { animation: none; }
     }
 
     @media (max-width: 1100px) {
-      .hero-grid { gap: var(--s-6); }
-      .hero-photo { height: 560px; max-width: 400px; }
       .hero h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); }
     }
     @media (max-width: 900px) {
-      .hero { padding-top: 100px; padding-bottom: var(--s-8); }
-      .hero-grid { grid-template-columns: 1fr; gap: var(--s-6); }
-      .hero-photo { max-width: 360px; height: 540px; margin: 0 auto; }
-      .hero-content { text-align: center; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-actions { justify-content: center; }
-      .hero-meta { justify-content: center; }
+      .hero {
+        padding-top: 120px;
+        padding-bottom: var(--s-10);
+        min-height: 80vh;
+      }
+      .hero-sub { font-size: 1.05rem; }
     }
     @media (max-width: 560px) {
-      .hero { padding-top: 90px; padding-bottom: var(--s-6); }
-      .hero-photo { max-width: 300px; height: 460px; }
-      .hero h1 { font-size: clamp(1.8rem, 7vw, 2.2rem); }
-      .hero-sub { font-size: 1rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
-      .hero-actions .btn { width: 100%; }
+      .hero {
+        padding-top: 100px;
+        padding-bottom: var(--s-8);
+        min-height: 75vh;
+      }
+      .hero-eyebrow { font-size: 0.74rem; padding: 6px 12px; margin-bottom: var(--s-5); }
+      .hero-sub { font-size: 0.98rem; }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions .btn { width: 100%; justify-content: center; }
       .hero-meta { font-size: 0.82rem; gap: var(--s-3); }
-      .hero-float-1 { left: 6px; top: var(--s-3); padding: 6px 12px 6px 8px; font-size: 0.74rem; }
-      .hero-float-2 { right: 6px; bottom: 86px; padding: 6px 12px 6px 8px; font-size: 0.74rem; }
+      .hero::after { width: 22px; height: 36px; bottom: 16px; }
+      .hero::before { bottom: 38px; }
     }
 
     /* =========================================================
@@ -2518,100 +2571,77 @@
        HERO
        ========================================================= -->
   <section class="hero">
+    <!-- Full-bleed cinematic background video -->
+    <video class="hero-bg-video"
+           autoplay muted loop playsinline
+           preload="auto"
+           poster="img/hero-poster.jpg"
+           aria-hidden="true"
+           tabindex="-1">
+      <source src="img/hero-bg.webm" type="video/webm">
+      <source media="(max-width: 700px)" src="img/hero-bg-mobile.mp4" type="video/mp4">
+      <source src="img/hero-bg.mp4" type="video/mp4">
+    </video>
+    <!-- Always-visible poster: shown until video starts (also if video 404) -->
+    <img class="hero-bg-fallback" src="img/hero-poster.jpg"
+         alt=""
+         loading="eager"
+         onerror="this.style.display='none'"
+         aria-hidden="true">
+    <!-- Dark gradient overlay for text legibility -->
+    <div class="hero-overlay" aria-hidden="true"></div>
+
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <div class="hero-eyebrow reveal">
-            <span class="dot" aria-hidden="true"></span>
-            <span data-en="By appointment · Open today"
-                  data-vi="Theo lịch hẹn · Mở cửa hôm nay"
-                  data-ko="예약제 · 오늘 진료"
-                  data-ru="По записи · Открыто сегодня">By appointment · Open today</span>
-          </div>
-
-          <h1 class="reveal reveal-delay-1"
-              data-en="The dentist Da Nang's <em>internationals</em> rely on"
-              data-vi="Nha sĩ mà <em>người nước ngoài</em> ở Đà Nẵng tin tưởng"
-              data-ko="다낭의 <em>외국인 환자들이</em> 신뢰하는 치과"
-              data-ru="Стоматолог, которому <em>иностранцы</em> в Дананге доверяют">The dentist Da Nang's <em>internationals</em> rely on</h1>
-
-          <p class="hero-sub reveal reveal-delay-2"
-             data-en="Dr. Diep — Cosmetic Restoration Specialist, Canada-trained, in private practice on Phan Anh Street for over a decade. The clinic locals quietly send their foreign friends to."
-             data-vi="Bs. Diệp — Chuyên gia Phục hình Thẩm mỹ, đào tạo tại Canada, hành nghề tư nhân trên đường Phan Anh hơn một thập kỷ. Phòng khám mà người địa phương âm thầm giới thiệu cho bạn bè nước ngoài."
-             data-ko="Dr. Diep — 심미 보철 전문의, 캐나다 수련, 판안 거리에서 10년 이상 개인 진료. 현지인들이 자기네 외국인 친구들에게 조용히 추천하는 그 치과."
-             data-ru="Доктор Дьеп — специалист по эстетической реставрации, прошла обучение в Канаде, ведёт частную практику на улице Фан Ань уже более десяти лет. Клиника, в которую местные тихо отправляют своих иностранных друзей.">
-            Dr. Diep — Cosmetic Restoration Specialist, Canada-trained, in private practice on Phan Anh Street for over a decade. The clinic locals quietly send their foreign friends to.
-          </p>
-
-          <div class="hero-actions reveal reveal-delay-3">
-            <a href="https://wa.me/84905151522?text=Hello%20Dr.%20Diep%2C%20I%27d%20like%20to%20book%20an%20appointment." class="btn btn-success" target="_blank" rel="noopener"
-               data-en="💬 Book on WhatsApp"
-               data-vi="💬 Đặt lịch qua WhatsApp"
-               data-ko="💬 왓츠앱으로 예약"
-               data-ru="💬 Записаться в WhatsApp">💬 Book on WhatsApp</a>
-            <a href="tel:+84905151522" class="btn btn-outline"
-               data-en="📞 Call +84 905 151 522"
-               data-vi="📞 Gọi +84 905 151 522"
-               data-ko="📞 +84 905 151 522 전화"
-               data-ru="📞 Звонок +84 905 151 522">📞 Call +84 905 151 522</a>
-          </div>
-
-          <div class="hero-meta reveal reveal-delay-4">
-            <div>
-              <span class="stars" aria-label="4.8 out of 5 stars">★★★★★</span>
-              <strong>4.8</strong>
-              <span data-en="on Google · 54 reviews"
-                    data-vi="trên Google · 54 đánh giá"
-                    data-ko="구글 · 54 리뷰"
-                    data-ru="на Google · 54 отзыва">on Google · 54 reviews</span>
-            </div>
-            <span aria-hidden="true">·</span>
-            <span data-en="🇨🇦 Canada-trained · 🇬🇧 English fluent"
-                  data-vi="🇨🇦 Đào tạo tại Canada · 🇬🇧 Thông thạo tiếng Anh"
-                  data-ko="🇨🇦 캐나다 수련 · 🇬🇧 영어 능통"
-                  data-ru="🇨🇦 Обучение в Канаде · 🇬🇧 Свободный английский">🇨🇦 Canada-trained · 🇬🇧 English fluent</span>
-          </div>
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-en="By appointment · Open today"
+                data-vi="Theo lịch hẹn · Mở cửa hôm nay"
+                data-ko="예약제 · 오늘 진료"
+                data-ru="По записи · Открыто сегодня">By appointment · Open today</span>
         </div>
 
-        <div class="hero-photo">
-          <video
-            class="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            poster="img/hero-poster.jpg"
-            aria-label="Cinematic loop showing a confident smile — Dr. Diep Dental Clinic Da Nang">
-            <source src="img/hero-loop.webm" type="video/webm">
-            <source src="img/hero-loop.mp4"  type="video/mp4">
-          </video>
-          <!-- Always-visible poster img: shown until video starts playing -->
-          <img class="hero-video-fallback" src="img/hero-poster.jpg"
-               alt=""
-               loading="eager"
-               width="1080" height="2048"
-               onerror="this.style.display='none'"
-               aria-hidden="true">
-          <div class="hero-photo-card">
-            <strong data-en="Dr. Tran Thi Ngoc Diep"
-                    data-vi="Bs. Trần Thị Ngọc Diệp"
-                    data-ko="Dr. Trần Thị Ngọc Diệp"
-                    data-ru="Доктор Чан Тхи Нгок Дьеп">Dr. Tran Thi Ngoc Diep</strong>
-            <span data-en="Cosmetic Restoration · Canada-trained · 10+ years"
-                  data-vi="Phục hình thẩm mỹ · Đào tạo Canada · 10+ năm"
-                  data-ko="심미 보철 · 캐나다 수련 · 10년 이상"
-                  data-ru="Эстетическая реставрация · Канада · 10+ лет">Cosmetic Restoration · Canada-trained · 10+ years</span>
+        <h1 class="reveal reveal-delay-1"
+            data-en="The dentist Da Nang's <em>internationals</em> rely on"
+            data-vi="Nha sĩ mà <em>người nước ngoài</em> ở Đà Nẵng tin tưởng"
+            data-ko="다낭의 <em>외국인 환자들이</em> 신뢰하는 치과"
+            data-ru="Стоматолог, которому <em>иностранцы</em> в Дананге доверяют">The dentist Da Nang's <em>internationals</em> rely on</h1>
+
+        <p class="hero-sub reveal reveal-delay-2"
+           data-en="Dr. Diep — Cosmetic Restoration Specialist, Canada-trained, in private practice on Phan Anh Street for over a decade. The clinic locals quietly send their foreign friends to."
+           data-vi="Bs. Diệp — Chuyên gia Phục hình Thẩm mỹ, đào tạo tại Canada, hành nghề tư nhân trên đường Phan Anh hơn một thập kỷ. Phòng khám mà người địa phương âm thầm giới thiệu cho bạn bè nước ngoài."
+           data-ko="Dr. Diep — 심미 보철 전문의, 캐나다 수련, 판안 거리에서 10년 이상 개인 진료. 현지인들이 자기네 외국인 친구들에게 조용히 추천하는 그 치과."
+           data-ru="Доктор Дьеп — специалист по эстетической реставрации, прошла обучение в Канаде, ведёт частную практику на улице Фан Ань уже более десяти лет. Клиника, в которую местные тихо отправляют своих иностранных друзей.">
+          Dr. Diep — Cosmetic Restoration Specialist, Canada-trained, in private practice on Phan Anh Street for over a decade. The clinic locals quietly send their foreign friends to.
+        </p>
+
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="https://wa.me/84905151522?text=Hello%20Dr.%20Diep%2C%20I%27d%20like%20to%20book%20an%20appointment." class="btn btn-success" target="_blank" rel="noopener"
+             data-en="💬 Book on WhatsApp"
+             data-vi="💬 Đặt lịch qua WhatsApp"
+             data-ko="💬 왓츠앱으로 예약"
+             data-ru="💬 Записаться в WhatsApp">💬 Book on WhatsApp</a>
+          <a href="tel:+84905151522" class="btn btn-outline-light"
+             data-en="📞 Call +84 905 151 522"
+             data-vi="📞 Gọi +84 905 151 522"
+             data-ko="📞 +84 905 151 522 전화"
+             data-ru="📞 Звонок +84 905 151 522">📞 Call +84 905 151 522</a>
+        </div>
+
+        <div class="hero-meta reveal reveal-delay-4">
+          <div>
+            <span class="stars" aria-label="4.8 out of 5 stars">★★★★★</span>
+            <strong>4.8</strong>
+            <span data-en="on Google · 54 reviews"
+                  data-vi="trên Google · 54 đánh giá"
+                  data-ko="구글 · 54 리뷰"
+                  data-ru="на Google · 54 отзыва">on Google · 54 reviews</span>
           </div>
-          <!-- Decorative floating badges -->
-          <div class="hero-float hero-float-1" aria-hidden="true">
-            <span class="hero-float-icon">🇨🇦</span>
-            <strong data-en="Canada-trained" data-vi="Đào tạo Canada" data-ko="캐나다 수련" data-ru="Канада">Canada-trained</strong>
-          </div>
-          <div class="hero-float hero-float-2" aria-hidden="true">
-            <span class="hero-float-icon">⭐</span>
-            <strong>4.8 / 5</strong>
-          </div>
+          <span aria-hidden="true" class="hero-meta-sep">·</span>
+          <span data-en="🇨🇦 Canada-trained · 🇬🇧 English fluent"
+                data-vi="🇨🇦 Đào tạo tại Canada · 🇬🇧 Thông thạo tiếng Anh"
+                data-ko="🇨🇦 캐나다 수련 · 🇬🇧 영어 능통"
+                data-ru="🇨🇦 Обучение в Канаде · 🇬🇧 Свободный английский">🇨🇦 Canada-trained · 🇬🇧 English fluent</span>
         </div>
       </div>
     </div>
@@ -3943,9 +3973,9 @@
   const heroTitle = document.querySelector('.hero h1');
 
   /* ----- HERO VIDEO — autoplay, fallback, offscreen pause ----- */
-  const heroVideo = document.querySelector('.hero-video');
-  const heroPhoto = document.querySelector('.hero-photo');
-  if (heroVideo && heroPhoto) {
+  const heroVideo = document.querySelector('.hero-bg-video');
+  const heroSection = document.querySelector('.hero');
+  if (heroVideo && heroSection) {
     // Force inline + muted for autoplay across browsers
     heroVideo.muted = true;
     heroVideo.setAttribute('muted', '');
@@ -3955,7 +3985,7 @@
 
     // Mark playing — hides the static fallback image via CSS
     function markPlaying() {
-      heroPhoto.classList.add('video-playing');
+      heroSection.classList.add('video-playing');
     }
     heroVideo.addEventListener('playing', markPlaying);
     heroVideo.addEventListener('loadeddata', () => {
@@ -4148,20 +4178,7 @@
   // Hide tooltip on any interaction
   liveTrigger.addEventListener('mouseenter', () => liveWidget.classList.remove('show-tooltip'));
 
-  /* ----- HERO SUBTLE PARALLAX ----- */
-  if (heroPhoto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let parallaxTicking = false;
-    window.addEventListener('scroll', () => {
-      if (!parallaxTicking) {
-        requestAnimationFrame(() => {
-          const y = Math.min(window.scrollY, 600);
-          heroPhoto.style.transform = `translateY(${y * 0.08}px)`;
-          parallaxTicking = false;
-        });
-        parallaxTicking = true;
-      }
-    }, { passive: true });
-  }
+  /* ----- HERO PARALLAX REMOVED — hero now uses full-bleed video background ----- */
 
   /* ----- MAGNETIC HERO CTAs ----- */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(pointer: fine)').matches) {
