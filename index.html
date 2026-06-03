@@ -2495,10 +2495,52 @@
       .tech-grid .tech-item:nth-child(5) { grid-column: span 1; }
     }
     /* Contact: padding mobile */
-    @media (max-width: 600px) {
-      .contact-bg { padding: var(--s-5); }
-      .contact-info h2 { font-size: 1.6rem; }
-      .form-card { padding: var(--s-4); }
+    @media (max-width: 700px) {
+      .contact-bg { padding: var(--s-4); border-radius: var(--radius); }
+      .contact-info h2 { font-size: 1.55rem; line-height: 1.2; }
+      .contact-info > p { font-size: 0.95rem; margin-bottom: var(--s-5); }
+      .contact-grid { gap: var(--s-5); }
+      .contact-channels { gap: var(--s-2); }
+      .contact-channel {
+        padding: 12px 14px;
+        gap: var(--s-3);
+        min-width: 0;        /* allow children to shrink for ellipsis */
+      }
+      .contact-channel .ic {
+        width: 36px; height: 36px;
+        font-size: 1rem;
+        border-radius: 9px;
+      }
+      .contact-channel > div:not(.ic) {
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+      }
+      .contact-channel strong {
+        font-size: 0.88rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .contact-channel span {
+        font-size: 0.74rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .form-card { padding: var(--s-4) var(--s-3); border-radius: var(--radius); }
+      .form-card h3 { font-size: 1.18rem; }
+      .form-card > p { font-size: 0.84rem; margin-bottom: var(--s-4); }
+      .form-field { margin-bottom: var(--s-3); }
+      .form-field label { font-size: 0.78rem; }
+      .form-field input,
+      .form-field select,
+      .form-field textarea { padding: 11px 12px; font-size: 0.92rem; }
+    }
+    @media (max-width: 380px) {
+      .contact-bg { padding: var(--s-3); }
+      .contact-channel { padding: 10px 12px; }
+      .contact-channel strong { font-size: 0.84rem; }
     }
     /* Footer: avoid empty space */
     @media (min-width: 801px) {
