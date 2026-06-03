@@ -166,9 +166,10 @@
         "founder": { "@id": "https://danangdentist.com/#dentist-person" },
         "logo": {
           "@type": "ImageObject",
-          "url": "https://danangdentist.com/img/icon-512.png",
-          "width": 512,
-          "height": 512
+          "url": "https://danangdentist.com/img/logo.png",
+          "width": 1089,
+          "height": 522,
+          "caption": "DaNang Dentist by Dr. Diep Dental Clinic logo"
         },
         "image": "https://danangdentist.com/img/team.jpg",
         "telephone": "+84905151522",
@@ -218,7 +219,7 @@
           "https://danangdentist.com/img/result-1-after.jpg",
           "https://danangdentist.com/img/result-3-after.jpg"
         ],
-        "logo": "https://danangdentist.com/img/icon-512.png",
+        "logo": "https://danangdentist.com/img/logo.png",
         "brand": { "@id": "https://danangdentist.com/#organization" },
         "address": {
           "@type": "PostalAddress",
@@ -659,32 +660,18 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: var(--s-3);
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: var(--text);
-    }
-    .nav-logo-mark {
-      width: 38px; height: 38px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-      display: grid; place-items: center;
-      color: white;
-      font-size: 1.05rem;
       flex-shrink: 0;
+      line-height: 1;
     }
-    .nav-logo strong { color: var(--color-primary-dk); }
-    .nav-logo small {
+    .nav-logo picture,
+    .nav-logo img {
       display: block;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-soft);
-      font-family: var(--font-body);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: 2px;
+      height: 48px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
     }
+    .nav-logo:hover img { opacity: 0.88; transition: opacity 0.2s var(--ease-out); }
     .nav-links {
       display: flex;
       align-items: center;
@@ -810,18 +797,19 @@
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
       .nav-inner { padding: 10px var(--s-4); gap: var(--s-3); }
-      .nav-logo { gap: 10px; }
-      .nav-logo strong { font-size: 1rem; white-space: nowrap; }
-      .nav-logo small { display: none; }    /* subtitle hidden on mobile to save space */
-      .nav-logo-mark { width: 34px; height: 34px; font-size: 0.95rem; border-radius: 8px; }
+      .nav-logo img { height: 40px; }
       .nav-actions { gap: 6px; }
       .lang-switcher { padding: 2px; }
       .lang-btn { padding: 4px 7px; font-size: 0.7rem; }
       .hamburger { width: 38px; height: 38px; }
     }
     @media (max-width: 420px) {
-      .lang-switcher { display: none; }       /* very small screens: hide lang from nav (still in mobile menu) */
-      .nav-logo strong { font-size: 0.95rem; }
+      .lang-switcher { display: none; }
+      .nav-logo img { height: 36px; }
+      .nav-inner { padding: 8px var(--s-3); }
+    }
+    @media (max-width: 340px) {
+      .nav-logo img { height: 32px; }
     }
 
     /* =========================================================
@@ -2860,11 +2848,16 @@
 <header class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="DaNang Dentist by Dr. Diep Dental Clinic — Home">
-      <span class="nav-logo-mark" aria-hidden="true">🦷</span>
-      <span>
-        <strong>DaNang Dentist</strong>
-        <small data-en="by Dr. Diep Dental Clinic" data-vi="bởi Phòng khám Bs. Diệp" data-ko="Dr. Diep 치과 운영" data-ru="клиника д-ра Дьеп">by Dr. Diep Dental Clinic</small>
-      </span>
+      <picture>
+        <source type="image/webp" srcset="img/logo-mobile.webp 240w, img/logo-nav.webp 400w" sizes="(max-width: 700px) 150px, 220px">
+        <img src="img/logo-nav.png"
+             srcset="img/logo-mobile.png 240w, img/logo-nav.png 400w"
+             sizes="(max-width: 700px) 150px, 220px"
+             alt="DaNang Dentist by Dr. Diep Dental Clinic — English-speaking dentist in Da Nang since 2013"
+             width="220" height="105"
+             loading="eager"
+             fetchpriority="high">
+      </picture>
     </a>
 
     <nav>
