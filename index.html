@@ -514,7 +514,7 @@
        ========================================================= */
     .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--s-5); }
     .container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--s-5); }
-    .section { padding: var(--s-12) 0; }
+    .section { padding: var(--s-10) 0; }
     .section-alt { background: var(--color-bg-alt); }
     .eyebrow {
       display: inline-block;
@@ -525,8 +525,17 @@
       color: var(--color-primary);
       margin-bottom: var(--s-3);
     }
-    .section-header { text-align: center; margin-bottom: var(--s-8); }
+    .section-header { text-align: center; margin-bottom: var(--s-6); }
     .section-header p { margin: var(--s-3) auto 0; }
+
+    @media (max-width: 900px) {
+      .section { padding: var(--s-8) 0; }
+      .container, .container-narrow { padding: 0 var(--s-4); }
+    }
+    @media (max-width: 560px) {
+      .section { padding: var(--s-6) 0; }
+      .section-header { margin-bottom: var(--s-5); }
+    }
 
     .visually-hidden {
       position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden;
@@ -887,9 +896,8 @@
     .hero-photo {
       position: relative;
       width: 100%;
-      aspect-ratio: 9/16;
-      max-width: 460px;
-      min-height: 400px;
+      max-width: 440px;
+      height: 640px;
       margin-left: auto;
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -899,6 +907,7 @@
         url('img/hero-poster.jpg') center / cover no-repeat,
         url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g' cx='50%25' cy='30%25'><stop offset='0%25' stop-color='%2348cae4'/><stop offset='100%25' stop-color='%23003e5e'/></radialGradient></defs><rect width='200' height='200' fill='url(%23g)'/><path d='M100 60 C 80 60 70 80 70 110 C 70 135 75 165 90 165 C 96 165 99 155 100 140 C 101 155 104 165 110 165 C 125 165 130 135 130 110 C 130 80 120 60 100 60 Z' fill='white' opacity='0.18'/></svg>") center / cover no-repeat,
         linear-gradient(135deg, var(--color-primary), var(--color-primary-darker));
+      flex-shrink: 0;
     }
     .hero-photo > .hero-video,
     .hero-photo > .hero-video-fallback {
@@ -909,6 +918,7 @@
       object-fit: cover;
       object-position: center center;
       display: block;
+      border: 0;
     }
     .hero-photo > .hero-video      { z-index: 2; }
     .hero-photo > .hero-video-fallback { z-index: 1; }
@@ -943,10 +953,30 @@
       color: var(--text-soft);
     }
 
+    @media (max-width: 1100px) {
+      .hero-grid { gap: var(--s-6); }
+      .hero-photo { height: 560px; max-width: 400px; }
+      .hero h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); }
+    }
     @media (max-width: 900px) {
-      .hero { padding-top: 110px; }
-      .hero-grid { grid-template-columns: 1fr; gap: var(--s-8); }
-      .hero-photo { max-width: 460px; margin: 0 auto; }
+      .hero { padding-top: 100px; padding-bottom: var(--s-8); }
+      .hero-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+      .hero-photo { max-width: 360px; height: 540px; margin: 0 auto; }
+      .hero-content { text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-meta { justify-content: center; }
+    }
+    @media (max-width: 560px) {
+      .hero { padding-top: 90px; padding-bottom: var(--s-6); }
+      .hero-photo { max-width: 300px; height: 460px; }
+      .hero h1 { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+      .hero-sub { font-size: 1rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .hero-actions .btn { width: 100%; }
+      .hero-meta { font-size: 0.82rem; gap: var(--s-3); }
+      .hero-float-1 { left: 6px; top: var(--s-3); padding: 6px 12px 6px 8px; font-size: 0.74rem; }
+      .hero-float-2 { right: 6px; bottom: 86px; padding: 6px 12px 6px 8px; font-size: 0.74rem; }
     }
 
     /* =========================================================
@@ -956,7 +986,7 @@
       background: var(--white);
       border-top: 1px solid var(--line-soft);
       border-bottom: 1px solid var(--line-soft);
-      padding: var(--s-8) 0;
+      padding: var(--s-6) 0;
     }
     .trust-grid {
       display: grid;
@@ -1292,7 +1322,8 @@
     .visit-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--s-8);
+      gap: var(--s-6);
+      align-items: start;
     }
     .visit-info h3 {
       margin-bottom: var(--s-4);
@@ -2331,6 +2362,97 @@
       .faq-body { animation: none; }
       .faq-icon { transition: none; }
     }
+
+    /* =========================================================
+       FINAL RESPONSIVE OVERRIDES — anti-empty-space + mobile polish
+       ========================================================= */
+    /* Prevent horizontal scroll on any viewport */
+    html, body { overflow-x: hidden; }
+    img, video, iframe { max-width: 100%; }
+
+    /* Doctor team figure responsive */
+    @media (max-width: 720px) {
+      .doctor-team-figure img { aspect-ratio: 4/3; }
+      .doctor-team-figure figcaption { font-size: 0.8rem; padding: var(--s-5) var(--s-4) var(--s-3); }
+    }
+    /* Section header tighter spacing */
+    .section-header h2 { line-height: 1.15; }
+    /* Doctor quote responsive */
+    @media (max-width: 600px) {
+      .doctor-quote { padding: var(--s-6) var(--s-4) var(--s-4); }
+      .doctor-quote p { font-size: 1.05rem; }
+      .doctor-quote-mark { width: 50px; height: 50px; font-size: 2.6rem; }
+    }
+    /* Results grid tighter on tablet */
+    @media (max-width: 980px) and (min-width: 741px) {
+      .results-grid { gap: var(--s-4); }
+      .ba-card { padding: var(--s-3); }
+    }
+    /* Service cards: better mobile flow */
+    @media (max-width: 600px) {
+      .service-card { padding: var(--s-5); }
+      .service-card h3 { font-size: 1.1rem; }
+    }
+    /* Testimonials: tighter padding on mobile */
+    @media (max-width: 600px) {
+      .testimonial { padding: var(--s-5); }
+      .testimonial-text { font-size: 0.96rem; }
+    }
+    /* Tech grid: balanced on tablet */
+    @media (max-width: 900px) and (min-width: 461px) {
+      .tech-grid { grid-template-columns: repeat(3, 1fr); }
+      .tech-grid .tech-item:nth-child(4),
+      .tech-grid .tech-item:nth-child(5) { grid-column: span 1; }
+    }
+    /* Contact: padding mobile */
+    @media (max-width: 600px) {
+      .contact-bg { padding: var(--s-5); }
+      .contact-info h2 { font-size: 1.6rem; }
+      .form-card { padding: var(--s-4); }
+    }
+    /* Footer: avoid empty space */
+    @media (min-width: 801px) {
+      .footer-grid { align-items: start; }
+    }
+    @media (max-width: 800px) {
+      footer { padding: var(--s-8) 0 var(--s-5); }
+      .footer-grid { gap: var(--s-5); margin-bottom: var(--s-6); }
+      .footer-brand { grid-column: 1 / -1; text-align: center; }
+      .footer-brand p { margin-left: auto; margin-right: auto; }
+      .footer-socials { justify-content: center; }
+    }
+    /* Hours table: full width mobile */
+    @media (max-width: 600px) {
+      .hours-table td { padding: 8px 0; font-size: 0.88rem; }
+      .emergency { padding: var(--s-4); gap: var(--s-3); }
+    }
+    /* Map overlay tighter on mobile */
+    @media (max-width: 600px) {
+      .map-overlay { padding: var(--s-2) var(--s-3); }
+      .map-overlay-text strong { font-size: 0.85rem; }
+      .map-overlay .btn { padding: 6px 10px; font-size: 0.75rem; }
+    }
+    /* Nav improvements on tablet */
+    @media (min-width: 901px) and (max-width: 1080px) {
+      .nav-links { gap: var(--s-4); }
+      .nav-links a { font-size: 0.86rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.82rem; }
+    }
+    /* FAQ tighter mobile */
+    @media (max-width: 600px) {
+      .faq-item summary { padding: var(--s-3) var(--s-4); font-size: 0.94rem; gap: var(--s-3); }
+      .faq-body { padding: 0 var(--s-4) var(--s-4); }
+      .faq-body p { font-size: 0.9rem; }
+    }
+    /* Hero floats keep visible on tablet */
+    @media (max-width: 1100px) and (min-width: 901px) {
+      .hero-float-1 { left: -12px; }
+      .hero-float-2 { right: -8px; bottom: 90px; }
+    }
+    /* Ensure padding-bottom for mobile sticky bar doesn't double up */
+    @media (max-width: 700px) {
+      body { padding-bottom: 76px; }
+    }
   </style>
 </head>
 <body>
@@ -2466,9 +2588,11 @@
           </video>
           <!-- Always-visible poster img: shown until video starts playing -->
           <img class="hero-video-fallback" src="img/hero-poster.jpg"
-               alt="Dr. Diep Dental Clinic — English-speaking dentist in Da Nang, Vietnam"
+               alt=""
                loading="eager"
-               width="1080" height="2048">
+               width="1080" height="2048"
+               onerror="this.style.display='none'"
+               aria-hidden="true">
           <div class="hero-photo-card">
             <strong data-en="Dr. Tran Thi Ngoc Diep"
                     data-vi="Bs. Trần Thị Ngọc Diệp"
@@ -4025,7 +4149,6 @@
   liveTrigger.addEventListener('mouseenter', () => liveWidget.classList.remove('show-tooltip'));
 
   /* ----- HERO SUBTLE PARALLAX ----- */
-  const heroPhoto = document.querySelector('.hero-photo');
   if (heroPhoto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     let parallaxTicking = false;
     window.addEventListener('scroll', () => {
