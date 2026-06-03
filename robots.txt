@@ -1,14 +1,30 @@
 # robots.txt for danangdentist.com
-# English-speaking dental clinic in Da Nang — Dr. Diep Dental Clinic
+# Dr. Diep Dental Clinic — Da Nang's English-speaking dental clinic
+# Last updated: 2026-06-03
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://danangdentist.com/sitemap.xml
+# Block old WordPress URLs (redirected via vercel.json anyway, but make crawlers happy)
+Disallow: /wp/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /xmlrpc.php
 
-# Don't crawl image search optimization
+# Allow image and video crawlers full access
 User-agent: Googlebot-Image
 Allow: /img/
 
-# Disallow nothing — single-page site, all content is public
+User-agent: Googlebot-Video
+Allow: /img/
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://danangdentist.com/sitemap.xml
+
+# Host directive (preferred canonical for Yandex/Mail.ru)
+Host: https://danangdentist.com

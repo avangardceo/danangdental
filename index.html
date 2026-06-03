@@ -8,10 +8,13 @@
   <meta name="googlebot" content="index, follow">
   <meta name="bingbot" content="index, follow">
 
-  <title>Dentist in Da Nang | Dr. Diep Dental Clinic — English-Speaking, 4.8★</title>
-  <meta name="description" content="The dentist Da Nang's internationals rely on. Dr. Diep — Cosmetic Restoration Specialist, Canada-trained, ten-plus years on Phan Anh Street. 4.8★ on Google · 54 reviews. By appointment: +84 905 151 522.">
-  <meta name="description:vi" content="Phòng khám nha khoa mà người nước ngoài ở Đà Nẵng tin tưởng. Bs. Diệp — Chuyên gia Phục hình Thẩm mỹ, đào tạo tại Canada, hơn 10 năm trên đường Phan Anh. 4.8★ Google · 54 đánh giá. Đặt lịch: +84 905 151 522.">
-  <meta name="keywords" content="dentist Da Nang, English-speaking dentist Da Nang, cosmetic dentist Da Nang, dental clinic Da Nang, dentist Vietnam, Dr Diep dental clinic, Danang dentist, teeth whitening Da Nang, dental implants Da Nang, veneers Da Nang, nha sĩ Đà Nẵng, phòng khám nha khoa Đà Nẵng, 다낭 치과, 다낭 치과 클리닉, стоматолог Дананг, стоматология Дананг">
+  <title>Dentist in Da Nang | DanangDentist.com — Dr. Diep Dental Clinic ★ 4.8</title>
+  <meta name="description" content="The dentist Da Nang's internationals rely on. Dr. Diep Dental Clinic on Phan Anh Street — Canada-trained Cosmetic Restoration Specialist, ten-plus years, 4.8★ on Google (54 reviews). Visit DanangDentist.com or book on WhatsApp: +84 905 151 522.">
+  <meta name="description:vi" content="Phòng khám nha khoa mà người nước ngoài ở Đà Nẵng tin tưởng. Bs. Diệp — Chuyên gia Phục hình Thẩm mỹ, đào tạo tại Canada, hơn 10 năm trên đường Phan Anh. 4.8★ Google · 54 đánh giá. DanangDentist.com · Đặt lịch: +84 905 151 522.">
+  <meta name="abstract" content="English-speaking dental clinic in Da Nang, Vietnam. Cosmetic restoration by Dr. Diep, Canada-trained.">
+  <meta name="subject" content="Dentist Da Nang Vietnam">
+  <meta name="copyright" content="Dr. Diep Dental Clinic">
+  <meta name="keywords" content="dentist Da Nang, danangdentist, danangdentist.com, English-speaking dentist Da Nang, cosmetic dentist Da Nang, dental clinic Da Nang, Dr Diep dental clinic, Dr Diep Da Nang, dentist Vietnam, Danang dentist, dental implants Da Nang, teeth whitening Da Nang, veneers Da Nang, dentist Phan Anh, nha sĩ Đà Nẵng, phòng khám nha khoa Đà Nẵng, nha khoa Phan Anh, 다낭 치과, 다낭 치과 클리닉, стоматолог Дананг, стоматология Дананг">
   <meta name="author" content="Dr. Tran Thi Ngoc Diep">
   <meta name="rating" content="General">
   <meta name="distribution" content="Global">
@@ -85,9 +88,15 @@
   <!-- Favicon: inline SVG (no external dependency) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230077b6'/%3E%3Cstop offset='100%25' stop-color='%2348cae4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M32 14 C22 14 18 22 18 32 C18 41 20 50 25 50 C28 50 29 45 32 38 C35 45 36 50 39 50 C44 50 46 41 46 32 C46 22 42 14 32 14 Z' fill='white'/%3E%3C/svg%3E">
 
-  <!-- Preconnect -->
+  <!-- Preconnect & preload critical resources for LCP / Core Web Vitals -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://maps.google.com">
+  <link rel="dns-prefetch" href="https://wa.me">
+  <link rel="dns-prefetch" href="https://www.google.com">
+
+  <!-- Preload LCP-critical: hero poster (renders before video plays) -->
+  <link rel="preload" as="image" href="img/hero-poster.jpg" fetchpriority="high">
 
   <!-- Fonts: Montserrat + Source Serif 4 (EN/RU) · Be Vietnam Pro (VI) · Noto Sans KR (KO) -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -102,16 +111,55 @@
         "@id": "https://danangdentist.com/#website",
         "url": "https://danangdentist.com/",
         "name": "Danang Dentist — Dr. Diep Dental Clinic",
+        "alternateName": ["DanangDentist.com", "Dr. Diep Dental Clinic"],
         "description": "English-speaking dental clinic in Da Nang, Vietnam. Cosmetic restoration, implants, whitening, orthodontics.",
         "inLanguage": ["en", "vi", "ko", "ru"],
-        "publisher": { "@id": "https://danangdentist.com/#organization" }
+        "publisher": { "@id": "https://danangdentist.com/#organization" },
+        "potentialAction": [
+          {
+            "@type": "ReserveAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://wa.me/84905151522?text=Hello%20Dr.%20Diep%2C%20I%27d%20like%20to%20book%20an%20appointment.",
+              "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+            },
+            "result": {
+              "@type": "Reservation",
+              "name": "Dental appointment at Dr. Diep Dental Clinic"
+            }
+          }
+        ]
       },
       {
-        "@type": "Organization",
+        "@type": "WebPage",
+        "@id": "https://danangdentist.com/#webpage",
+        "url": "https://danangdentist.com/",
+        "name": "Dentist in Da Nang | Dr. Diep Dental Clinic — English-Speaking, 4.8★",
+        "description": "The dentist Da Nang's internationals rely on. Dr. Diep — Canada-trained Cosmetic Restoration Specialist, ten-plus years on Phan Anh Street. Book on WhatsApp: +84 905 151 522.",
+        "isPartOf": { "@id": "https://danangdentist.com/#website" },
+        "about": { "@id": "https://danangdentist.com/#dentist" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://danangdentist.com/img/hero-poster.jpg",
+          "width": 1080,
+          "height": 2048
+        },
+        "video": { "@id": "https://danangdentist.com/#hero-video" },
+        "breadcrumb": { "@id": "https://danangdentist.com/#breadcrumb" },
+        "inLanguage": "en",
+        "datePublished": "2026-06-03",
+        "dateModified": "2026-06-03",
+        "mainContentOfPage": { "@id": "https://danangdentist.com/#dentist" }
+      },
+      {
+        "@type": ["Organization", "MedicalOrganization"],
         "@id": "https://danangdentist.com/#organization",
         "name": "Dr. Diep Dental Clinic",
-        "alternateName": ["Danang Dentist", "Phòng khám Bs. Diệp"],
+        "alternateName": ["Danang Dentist", "DanangDentist.com", "Phòng khám Bs. Diệp"],
         "url": "https://danangdentist.com/",
+        "slogan": "The dentist Da Nang's internationals rely on",
+        "foundingDate": "2014",
+        "founder": { "@id": "https://danangdentist.com/#dentist-person" },
         "logo": {
           "@type": "ImageObject",
           "url": "https://danangdentist.com/img/icon-512.png",
@@ -121,27 +169,52 @@
         "image": "https://danangdentist.com/img/team.jpg",
         "telephone": "+84905151522",
         "email": "DanangDentist@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "78 Đường Phan Anh",
+          "addressLocality": "Cẩm Lệ",
+          "addressRegion": "Đà Nẵng",
+          "postalCode": "550000",
+          "addressCountry": "VN"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Da Nang" },
+          { "@type": "Country", "name": "Vietnam" }
+        ],
+        "knowsAbout": ["Cosmetic dentistry", "Dental restoration", "Dental implants", "Teeth whitening", "Orthodontics", "Pediatric dentistry", "Root canal therapy", "Dental veneers"],
+        "knowsLanguage": ["en", "vi"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+84905151522",
+          "contactType": "reservations",
+          "availableLanguage": ["English", "Vietnamese"],
+          "areaServed": "VN",
+          "contactOption": "TollFree"
+        },
         "sameAs": [
           "https://www.facebook.com/Dr.DiepDentalClinic",
           "https://www.facebook.com/people/Dr-Diep-Dental-Clinic/100041824347079/"
         ]
       },
       {
-        "@type": ["Dentist", "LocalBusiness", "MedicalBusiness"],
+        "@type": ["Dentist", "MedicalClinic", "LocalBusiness", "MedicalBusiness"],
         "@id": "https://danangdentist.com/#dentist",
         "name": "Dr. Diep Dental Clinic",
-        "alternateName": "Danang Dentist",
+        "alternateName": ["Danang Dentist", "DanangDentist.com"],
         "description": "English-speaking dental clinic in Da Nang. Cosmetic and general dentistry by Dr. Tran Thi Ngoc Diep — Canada-trained Cosmetic Restoration Specialist with ten-plus years of private practice on Phan Anh Street.",
         "slogan": "The dentist Da Nang's internationals rely on",
         "url": "https://danangdentist.com/",
+        "mainEntityOfPage": { "@id": "https://danangdentist.com/#webpage" },
         "telephone": "+84905151522",
         "email": "DanangDentist@gmail.com",
         "image": [
+          "https://danangdentist.com/img/hero-poster.jpg",
           "https://danangdentist.com/img/team.jpg",
           "https://danangdentist.com/img/result-1-after.jpg",
           "https://danangdentist.com/img/result-3-after.jpg"
         ],
         "logo": "https://danangdentist.com/img/icon-512.png",
+        "brand": { "@id": "https://danangdentist.com/#organization" },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "78 Đường Phan Anh",
@@ -206,9 +279,19 @@
         ],
         "knowsLanguage": ["en", "vi"],
         "areaServed": [
-          { "@type": "City", "name": "Da Nang" },
+          { "@type": "City", "name": "Da Nang", "containedInPlace": { "@type": "Country", "name": "Vietnam" } },
           { "@type": "AdministrativeArea", "name": "Central Vietnam" }
         ],
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "name": "Book a dental appointment",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wa.me/84905151522?text=Hello%20Dr.%20Diep%2C%20I%27d%20like%20to%20book%20an%20appointment.",
+            "inLanguage": "en",
+            "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform", "http://schema.org/IOSPlatform", "http://schema.org/AndroidPlatform"]
+          }
+        },
         "sameAs": [
           "https://www.facebook.com/Dr.DiepDentalClinic",
           "https://www.facebook.com/people/Dr-Diep-Dental-Clinic/100041824347079/"
@@ -809,7 +892,10 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-darker));
+      /* Poster as background fallback — visible even before video loads */
+      background:
+        url('img/hero-poster.jpg') center / cover no-repeat,
+        linear-gradient(135deg, var(--color-primary), var(--color-primary-darker));
     }
     .hero-photo img,
     .hero-photo .hero-video {
@@ -821,6 +907,20 @@
     .hero-video {
       /* Subtle saturation boost to make the dental footage pop */
       filter: saturate(1.08) contrast(1.03);
+      /* Smooth fade-in when video starts playing */
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .hero-video.is-playing,
+    .hero-video[data-loaded="true"] {
+      opacity: 1;
+    }
+    .hero-video-fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .hero-photo-card {
       position: absolute;
@@ -2361,15 +2461,17 @@
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="auto"
             poster="img/hero-poster.jpg"
             aria-label="Cinematic loop showing a confident smile — Dr. Diep Dental Clinic Da Nang"
             width="1080" height="2048">
             <source src="img/hero-loop.webm" type="video/webm">
             <source src="img/hero-loop.mp4"  type="video/mp4">
-            <!-- Fallback for browsers that don't support video -->
-            <img src="img/hero-poster.jpg" alt="The team at Dr. Diep Dental Clinic — English-speaking dentist in Da Nang, Vietnam">
           </video>
+          <!-- Fallback image shown if video element fails entirely -->
+          <img class="hero-video-fallback" src="img/hero-poster.jpg"
+               alt="Dr. Diep Dental Clinic — English-speaking dentist in Da Nang, Vietnam"
+               loading="eager" hidden>
           <div class="hero-photo-card">
             <strong data-en="Dr. Tran Thi Ngoc Diep"
                     data-vi="Bs. Trần Thị Ngọc Diệp"
@@ -3445,12 +3547,14 @@
 
     <div class="footer-bottom">
       <address>
-        © <span id="year">2026</span> Dr. Diep Dental Clinic ·
-        <a href="https://www.google.com/maps/place/?q=place_id:ChIJY6Wpw5IZQjERf_5mhRUn5Vw" target="_blank" rel="noopener">78 Phan Anh, Cẩm Lệ, Đà Nẵng</a>
+        © <span id="year">2026</span> <strong>Dr. Diep Dental Clinic</strong> · DanangDentist.com ·
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJY6Wpw5IZQjERf_5mhRUn5Vw" target="_blank" rel="noopener">78 Phan Anh, Cẩm Lệ, Đà Nẵng 550000, Vietnam</a> ·
+        <a href="tel:+84905151522">+84 905 151 522</a>
       </address>
       <span>
         <a href="#" data-en="Privacy Policy" data-vi="Chính sách bảo mật" data-ko="개인정보 처리방침" data-ru="Политика конфиденциальности">Privacy Policy</a> ·
-        <a href="#" data-en="Cookies" data-vi="Cookie" data-ko="쿠키" data-ru="Cookies">Cookies</a>
+        <a href="#" data-en="Cookies" data-vi="Cookie" data-ko="쿠키" data-ru="Cookies">Cookies</a> ·
+        <a href="/sitemap.xml" data-en="Sitemap" data-vi="Sơ đồ trang" data-ko="사이트맵" data-ru="Карта сайта">Sitemap</a>
       </span>
     </div>
   </div>
@@ -3571,10 +3675,10 @@
   const LANG_KEY = 'dd-lang';
   const SUPPORTED = ['en', 'vi', 'ko', 'ru'];
   const meta = {
-    en: { title: "Dr. Diep Dental Clinic — The dentist Da Nang's internationals rely on" },
-    vi: { title: "Phòng khám Bs. Diệp — Nha sĩ người nước ngoài ở Đà Nẵng tin tưởng" },
-    ko: { title: "Dr. Diep 치과 — 다낭의 외국인 환자들이 신뢰하는 치과" },
-    ru: { title: "Клиника д-ра Дьеп — стоматолог, которому иностранцы в Дананге доверяют" }
+    en: { title: "Dentist in Da Nang | DanangDentist.com — Dr. Diep Dental Clinic ★ 4.8" },
+    vi: { title: "Nha sĩ Đà Nẵng | DanangDentist.com — Phòng khám Bs. Diệp ★ 4.8" },
+    ko: { title: "다낭 치과 | DanangDentist.com — Dr. Diep 치과 ★ 4.8" },
+    ru: { title: "Стоматолог в Дананге | DanangDentist.com — Клиника д-ра Дьеп ★ 4.8" }
   };
 
   function getInitialLang() {
@@ -3717,17 +3821,56 @@
   /* ----- HERO TITLE FIT-TO-WIDTH (no wrap, auto-scale) ----- */
   const heroTitle = document.querySelector('.hero h1');
 
-  /* ----- HERO VIDEO — pause when offscreen to save battery/CPU ----- */
+  /* ----- HERO VIDEO — autoplay, fade-in, fallback, offscreen pause ----- */
   const heroVideo = document.querySelector('.hero-video');
+  const heroFallback = document.querySelector('.hero-video-fallback');
   if (heroVideo) {
-    // Ensure autoplay attempt on iOS Safari
+    // Force inline + muted for autoplay across browsers
     heroVideo.muted = true;
     heroVideo.setAttribute('muted', '');
     heroVideo.playsInline = true;
-    const playPromise = heroVideo.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => { /* autoplay blocked, poster will show */ });
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
+
+    // Show video as soon as it's playable
+    function markPlaying() {
+      heroVideo.classList.add('is-playing');
+      heroVideo.dataset.loaded = 'true';
     }
+    heroVideo.addEventListener('loadeddata', markPlaying);
+    heroVideo.addEventListener('canplay',    markPlaying);
+    heroVideo.addEventListener('playing',    markPlaying);
+
+    // Try to play
+    function tryPlay() {
+      const p = heroVideo.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch((err) => {
+          // Autoplay blocked — try once on first user interaction
+          const resume = () => { heroVideo.play().catch(()=>{}); document.removeEventListener('click', resume); document.removeEventListener('touchstart', resume); };
+          document.addEventListener('click', resume, { once: true });
+          document.addEventListener('touchstart', resume, { once: true });
+        });
+      }
+    }
+    // Wait a tick so attributes settle before play attempt
+    setTimeout(tryPlay, 30);
+
+    // Fallback: if video can't load (404, decode error, codec) → show image
+    function showFallback() {
+      if (heroFallback) {
+        heroFallback.hidden = false;
+        heroVideo.style.display = 'none';
+      }
+    }
+    heroVideo.addEventListener('error', showFallback);
+    // Also fallback if no source loads within 6 seconds (slow connection or missing files)
+    setTimeout(() => {
+      if (heroVideo.readyState < 2 && !heroVideo.classList.contains('is-playing')) {
+        showFallback();
+      }
+    }, 6000);
+
     // Pause when out of viewport
     if ('IntersectionObserver' in window) {
       const vIO = new IntersectionObserver((entries) => {
@@ -3741,10 +3884,11 @@
       }, { threshold: 0.1 });
       vIO.observe(heroVideo);
     }
-    // Respect reduced motion: don't autoplay
+    // Respect reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       heroVideo.pause();
       heroVideo.removeAttribute('autoplay');
+      showFallback();
     }
   }
   function fitHeroTitle() {
